@@ -659,10 +659,7 @@ class HassioMainDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self.entry_id = config_entry.entry_id
         self.dev_reg = dev_reg
-        if info := self.hass.data.get(DATA_INFO):
-            self.is_hass_os = info.hassos is not None
-        else:
-            self.is_hass_os = False
+        self.is_hass_os = False
         self.supervisor_client = get_supervisor_client(hass)
         self.jobs = SupervisorJobs(hass)
         self._dispatcher_disconnect = async_dispatcher_connect(
@@ -723,6 +720,7 @@ class HassioMainDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
         # Build clean coordinator data
         new_data: dict[str, Any] = {}
+        self.is_hass_os = info.hassos is not None
         new_data[DATA_KEY_CORE] = core_info.to_dict()
         new_data[DATA_KEY_SUPERVISOR] = supervisor_info.to_dict()
         new_data[DATA_KEY_HOST] = host_info.to_dict()
