@@ -210,26 +210,6 @@ ENTITY_DESCRIPTIONS: tuple[EcovacsSensorEntityDescription, ...] = (
         entity_category=EntityCategory.DIAGNOSTIC,
         state_class=SensorStateClass.MEASUREMENT,
     ),
-    EcovacsSensorEntityDescription[RtkEvent](
-        capability_fn=lambda caps: caps.rtk,
-        value_fn=lambda e: e.rover_occlusion_rate,
-        key="rtk_rover_occlusion_rate",
-        translation_key="rtk_rover_occlusion_rate",
-        native_unit_of_measurement=PERCENTAGE,
-        entity_category=EntityCategory.DIAGNOSTIC,
-        state_class=SensorStateClass.MEASUREMENT,
-        entity_registry_enabled_default=False,
-    ),
-    EcovacsSensorEntityDescription[RtkEvent](
-        capability_fn=lambda caps: caps.rtk,
-        value_fn=lambda e: e.base_occlusion_rate,
-        key="rtk_base_occlusion_rate",
-        translation_key="rtk_base_occlusion_rate",
-        native_unit_of_measurement=PERCENTAGE,
-        entity_category=EntityCategory.DIAGNOSTIC,
-        state_class=SensorStateClass.MEASUREMENT,
-        entity_registry_enabled_default=False,
-    ),
 )
 
 
